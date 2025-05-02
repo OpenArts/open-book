@@ -1,0 +1,72 @@
+{
+  "id": 1,
+  "name": "Profile Name",
+  "avatar": "assets/logo.png",
+  "followers": [
+    { "name": "Follower Name", "avatar": "assets/logo.png" },
+    { "name": "Follower Name", "avatar": "assets/logo.png" }
+  ],
+  "friends": [
+    { "name": "Friend Name", "avatar": "assets/logo.png" },
+    {
+      "name": "Friend Name",
+      "avatar": "assets/logo.png"
+    }
+  ],
+  "friendlyRequests": [
+    { "name": "Friendly Requester Name", "avatar": "assets/logo.png" },
+    { "name": "Friendly Requester Name", "avatar": "assets/logo.png" }
+  ],
+  "posts": [
+    {
+      "date": "2024/8/27",
+      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet sunt aut ipsum, quia inventore ut rem accusantium possimus a praesentium dicta autem neque. Animi perspiciatis, modi quibusdam suscipit ipsa tenetur minus tempore, voluptatem accusantium possimus ullam aliquam. Ab a, accusantium provident voluptates sed ducimus amet nisi delectus inventore, eligendi eaque."
+    },
+    {
+      "date": "2024/8/27",
+      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet sunt auuia inventor"
+    }
+  ],
+  "reels": [
+    {
+      "date": "2025/8/27",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2008/8/27",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2008/3/9",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2007/7/27",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2008/8/28",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2025/8/27",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2008/8/27",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2008/3/9",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2007/7/27",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2008/8/28",
+      "url": "assets/reel.mp4"
+    }
+  ]
+}
