@@ -1,5 +1,5 @@
 <template>
-  <div class="container main">
+  <b-container>
     <b-row>
       <reel-structure
         v-for="(reel, index) in reels"
@@ -10,11 +10,11 @@
         :date="reel.date"
       />
     </b-row>
-  </div>
+  </b-container>
 </template>
 <script>
 import reelStructure from "@/components/reel-structure.vue";
-import reelsSuggestions from "@/json/reels.json";
+import reelsSuggestions from "@/json/suggestions.json";
 
 export default {
   name: "reels-view",
@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      reels: reelsSuggestions,
+      reels: reelsSuggestions.reels,
     };
   },
   methods: {

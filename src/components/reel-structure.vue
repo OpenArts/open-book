@@ -1,24 +1,36 @@
 <template>
   <b-col class="d-flex justify-content-center p-0 mb-3" cols="12">
-    <div class="reel">
+    <div class="reel w-sm-25">
       <video :controls="controls" class="w-100 h-100">
         <source :src="asset(url)" type="video/mp4" />
       </video>
       <div class="reactions ml-1">
-        <b-button variant="light" class="reaction" v-show="controls">
-          <b-icon icon="hand-thumbs-up" font-scale="2" variant="light"></b-icon>
+        <b-button
+          variant="dark"
+          class="reaction"
+          v-show="controls"
+          @click="addLike()"
+        >
+          <b-icon
+            icon="hand-thumbs-up"
+            font-scale="2"
+            :variant="likeColor"
+          ></b-icon>
+          <span>{{ likes }}</span>
         </b-button>
-        <b-button variant="light" class="reaction" v-show="controls">
+        <b-button variant="dark" class="reaction" v-show="controls">
           <b-icon icon="reply" font-scale="1.7" variant="light"></b-icon>
+          <span>{{ comments }}</span>
         </b-button>
-        <b-button variant="light" class="reaction" v-show="controls">
+        <b-button variant="dark" class="reaction" v-show="controls">
           <b-icon icon="share" font-scale="1.7" variant="light"></b-icon>
+          <span>{{ shares }}</span>
         </b-button>
-        <b-button variant="light" class="reaction" v-show="controls">
+        <b-button variant="dark" class="reaction" v-show="controls">
           <b-icon icon="save" font-scale="1.7" variant="light"></b-icon>
         </b-button>
         <b-button
-          variant="light"
+          variant="dark"
           class="reaction p-0"
           @click="controls = !controls"
         >
@@ -26,17 +38,31 @@
         </b-button>
       </div>
       <div id="publisher-info" class="d-flex align-items-center">
-        <b-button variant="light" class="flw-btn ml-auto mr-2" v-show="controls"
-          >Follow</b-button
+        <b-button
+          variant="light"
+          class="flw-btn ml-auto mr-2"
+          v-show="controls"
+          @click="isFollowing = !isFollowing"
+          >{{ isFollowing ? "Following" : "Follow" }}</b-button
         >
 
         <div class="mr-1" v-show="controls">
-          <h5 class="m-0">{{ name }}</h5>
+          <h5
+            class="m-0"
+            @click="
+              fullName
+                ? ((nameShortcut = getNameShortcut(name)), (fullName = false))
+                : ((nameShortcut = name), (fullName = true))
+            "
+          >
+            {{ nameShortcut }}
+          </h5>
           <small>{{ date }}</small>
         </div>
 
         <b-avatar :src="asset(avatar)" size="md" v-show="controls"></b-avatar>
       </div>
+      <div v-html="disc"></div>
     </div>
   </b-col>
 </template>
@@ -46,14 +72,38 @@ import allPostsView from "@/views/all-posts-view.vue";
 
 export default {
   name: "reel-structure",
-  props: ["name", "url", "avatar", "date"],
+  props: ["name", "url", "avatar", "date", "disc"],
   data() {
     return {
+      likes: 0,
+      comments: 0,
+      shares: 0,
+      likeAdded: false,
+      likeColor: "light",
+      fullName: false,
       controls: true,
+      isFollowing: false,
+      nameShortcut: this.getNameShortcut(this.name),
     };
   },
   methods: {
     asset: (path) => allPostsView.methods.getImgPath(path),
+    getNameShortcut(name) {
+      if (name.length > 10) {
+        return name.slice(0, 7) + "...";
+      } else return name;
+    },
+    addLike() {
+      if (this.likeAdded) {
+        this.likes--;
+        this.likeAdded = false;
+        this.likeColor = "light";
+      } else {
+        this.likes++;
+        this.likeAdded = true;
+        this.likeColor = "primary";
+      }
+    },
   },
 };
 </script>
@@ -69,7 +119,7 @@ export default {
     border-radius: 10px;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 960px) {
   .reel {
     width: 100%;
     height: 90vh;
@@ -85,6 +135,9 @@ export default {
   .reaction {
     border: none;
     background: transparent;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
   }
 }
 #publisher-info {

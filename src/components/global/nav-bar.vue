@@ -1,13 +1,8 @@
 <template>
   <b-navbar toggleable="sm" type="light" class="blur" fixed="top">
-    <b-navbar-brand to="/" tag="router-link"
-      ><b-icon
-        variant="primary"
-        icon="facebook"
-        font-scale="2"
-        class="mx-2"
-      ></b-icon
-    ></b-navbar-brand>
+    <b-navbar-brand to="/" tag="router-link">
+      <b>Black Book</b>
+    </b-navbar-brand>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
@@ -20,20 +15,15 @@
         <b-nav-item to="/reels" tag="router-link">
           <b-icon icon="film" font-scale="1.5" class="mx-2"></b-icon>
         </b-nav-item>
-        <b-nav-item to="/stories" tag="router-link">
-          <b-icon icon="book" font-scale="1.5" class="mx-2"></b-icon>
-        </b-nav-item>
         <b-nav-item to="/about" tag="router-link">
           <b-icon icon="info-circle" font-scale="1.5" class="mx-2"></b-icon>
         </b-nav-item>
-      </b-navbar-nav>
-      <b-navbar-nav>
-        <b-nav-form class="bg-light">
-          <b-form-input size="md" placeholder="Search..."></b-form-input>
-          <b-button variant="light" size="md"
-            ><b-icon icon="search" font-scal="md"></b-icon
-          ></b-button>
-        </b-nav-form>
+        <b-nav-item to="/search" tag="router-link">
+          <b-icon icon="search" font-scale="1.5" class="mx-2"></b-icon>
+        </b-nav-item>
+        <b-nav-item to="/upload" tag="router-link">
+          <b-icon icon="plus-circle" font-scale="1.5" class="mx-2"></b-icon>
+        </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>

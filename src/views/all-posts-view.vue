@@ -13,7 +13,7 @@
 
 <script>
 import postStructure from "@/components/post-structure.vue";
-import posts from "@/json/posts.json";
+import suggestions from "@/json/suggestions.json";
 
 export default {
   name: "all-posts-view",
@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      posts: posts,
+      posts: suggestions.posts,
     };
   },
   methods: {

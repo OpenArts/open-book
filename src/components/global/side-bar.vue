@@ -5,7 +5,7 @@
     ></b-button>
     <b-sidebar id="sidebar-1" right shadow backdrop>
       <div>
-        <b-nav vertical>
+        <b-nav vertical variant="dark">
           <b-nav-item to="/" tag="router-link"
             ><b-icon icon="house" font-scale="2" variant="dark"></b-icon
           ></b-nav-item>
@@ -15,12 +15,17 @@
           <b-nav-item to="/reels"
             ><b-icon icon="film" font-scale="2" variant="dark"></b-icon
           ></b-nav-item>
-          <b-nav-item to="/stories"
-            ><b-icon icon="book" font-scale="2" variant="dark"></b-icon
-          ></b-nav-item>
           <b-nav-item to="/about"
             ><b-icon icon="info-circle" font-scale="2" variant="dark"></b-icon
           ></b-nav-item>
+          <b-nav-item to="/search" tag="router-link">
+            <b-icon
+              icon="search"
+              font-scale="1.5"
+              class="mx-2"
+              variant="dark"
+            ></b-icon>
+          </b-nav-item>
         </b-nav>
       </div>
     </b-sidebar>
@@ -38,5 +43,7 @@ export default {
   position: fixed;
   right: 10px;
   z-index: 1031;
+  background: transparent;
+  border: none;
 }
 </style>

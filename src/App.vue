@@ -35,6 +35,8 @@ export default {
   min-height: 100vh;
   #rtv {
     padding-top: 80px;
+    min-width: 100vw;
+    min-height: 70vh;
   }
 }
 </style>

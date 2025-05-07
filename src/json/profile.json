@@ -2,10 +2,6 @@
   "id": 1,
   "name": "Profile Name",
   "avatar": "assets/logo.png",
-  "followers": [
-    { "name": "Follower Name", "avatar": "assets/logo.png" },
-    { "name": "Follower Name", "avatar": "assets/logo.png" }
-  ],
   "friends": [
     { "name": "Friend Name", "avatar": "assets/logo.png" },
     {
@@ -65,7 +61,23 @@
       "url": "assets/reel.mp4"
     },
     {
+      "date": "2008/8/27",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2008/3/9",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2007/7/27",
+      "url": "assets/reel.mp4"
+    },
+    {
       "date": "2008/8/28",
+      "url": "assets/reel.mp4"
+    },
+    {
+      "date": "2008/3/9",
       "url": "assets/reel.mp4"
     }
   ]

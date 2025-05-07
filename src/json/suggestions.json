@@ -1,0 +1,96 @@
+{
+  "posts": [
+    {
+      "name": "Mohammad Assaf *Creator*",
+      "avatar": "assets/logo.png",
+      "date": "2008/8/27",
+      "content": "ALL RIGHTS RESERVED (C) @OpenArts #BlackBook"
+    },
+    {
+      "name": "Black_Star (c)",
+      "avatar": "assets/logo.png",
+      "date": "2012/5/12",
+      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi ipsam repellat recusandae molestias vel neque al anditiis magnam totam adipisci cumque."
+    },
+    {
+      "name": "user_1.618",
+      "avatar": "assets/logo.png",
+      "date": "2010/5/12",
+      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi ipsam repellat recusandae molestias vel neque aliquid fugit, voluptatem nisi autem nobis."
+    },
+    {
+      "name": "Open Arts.OA (c)",
+      "avatar": "assets/logo.png",
+      "date": "1977/5/12",
+      "content": "###Test###"
+    },
+    {
+      "name": "Startum.BA",
+      "avatar": "assets/logo.png",
+      "date": "1978/5/12",
+      "content": "###Test###"
+    }
+  ],
+  "reels": [
+    {
+      "name": "onion.1776",
+      "url": "assets/reel.mp4",
+      "avatar": "assets/logo.png",
+      "date": "2025/3/27",
+      "disc": "A star boom in the space!"
+    },
+    {
+      "name": "mcc.de.NN.uEE",
+      "url": "assets/reel.mp4",
+      "avatar": "assets/logo.png",
+      "date": "2024/4/09",
+      "disc": "Default reel"
+    },
+    {
+      "name": "Publisher",
+      "url": "assets/reel.mp4",
+      "avatar": "assets/logo.png",
+      "date": "2020/12/02,",
+      "disc": "Support us"
+    },
+    {
+      "name": "Abed Assaf",
+      "url": "assets/reel.mp4",
+      "avatar": "assets/logo.png",
+      "date": "2004/4/04",
+      "disc": "Big bang imagination video"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "onion.1776",
+      "avatar": "assets/logo.png"
+    },
+    {
+      "id": 2,
+      "name": "mcc.de.NN.uEE",
+      "avatar": "assets/logo.png"
+    },
+    {
+      "id": 3,
+      "name": "Publisher",
+      "avatar": "assets/logo.png"
+    },
+    {
+      "id": 4,
+      "name": "new_Publisher",
+      "avatar": "assets/logo.png"
+    },
+    {
+      "id": 5,
+      "name": "User.2008",
+      "avatar": "assets/logo.png"
+    },
+    {
+      "id": 6,
+      "name": "Black-Book.466",
+      "avatar": "assets/logo.png"
+    }
+  ]
+}
