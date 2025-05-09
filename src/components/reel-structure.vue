@@ -7,7 +7,7 @@
       <div class="reactions ml-1">
         <b-button
           variant="dark"
-          class="reaction"
+          class="reaction text-center"
           v-show="controls"
           @click="addLike()"
         >
@@ -18,17 +18,25 @@
           ></b-icon>
           <span>{{ likes }}</span>
         </b-button>
-        <b-button variant="dark" class="reaction" v-show="controls">
+        <b-button variant="dark" class="reaction text-center" v-show="controls">
           <b-icon icon="reply" font-scale="1.7" variant="light"></b-icon>
           <span>{{ comments }}</span>
         </b-button>
-        <b-button variant="dark" class="reaction" v-show="controls">
+        <b-button variant="dark" class="reaction text-center" v-show="controls">
           <b-icon icon="share" font-scale="1.7" variant="light"></b-icon>
           <span>{{ shares }}</span>
         </b-button>
-        <b-button variant="dark" class="reaction" v-show="controls">
+        <b-button variant="dark" class="reaction text-center" v-show="controls">
           <b-icon icon="save" font-scale="1.7" variant="light"></b-icon>
         </b-button>
+        <b-button
+          v-b-toggle.disccoll
+          class="reaction"
+          v-show="controls"
+          variant="light"
+        >
+          <b-icon font-scale="1.7" icon="disc"></b-icon
+        ></b-button>
         <b-button
           variant="dark"
           class="reaction p-0"
@@ -37,6 +45,7 @@
           <b-icon icon="square" font-scale="1.7" variant="light"></b-icon>
         </b-button>
       </div>
+      <!-- Publisher Info -->
       <div id="publisher-info" class="d-flex align-items-center">
         <b-button
           variant="light"
@@ -46,13 +55,12 @@
           >{{ isFollowing ? "Following" : "Follow" }}</b-button
         >
 
-        <div class="mr-1" v-show="controls">
+        <div class="mr-1 h-100" v-show="controls">
           <h5
-            class="m-0"
             @click="
-              fullName
-                ? ((nameShortcut = getNameShortcut(name)), (fullName = false))
-                : ((nameShortcut = name), (fullName = true))
+              allName
+                ? ((nameShortcut = getNameShortcut(name)), (allName = false))
+                : ((nameShortcut = name), (allName = true))
             "
           >
             {{ nameShortcut }}
@@ -62,7 +70,18 @@
 
         <b-avatar :src="asset(avatar)" size="md" v-show="controls"></b-avatar>
       </div>
-      <div v-html="disc"></div>
+      <b-collapse id="disccoll" v-show="controls">
+        <div class="bg-dark disc h-100 p-1 ml-auto">
+          <p
+            v-html="discShortcut"
+            @click="
+              allDisc
+                ? ((discShortcut = getDiscShortcut(disc)), (allDisc = false))
+                : ((discShortcut = disc), (allDisc = true))
+            "
+          ></p>
+        </div>
+      </b-collapse>
     </div>
   </b-col>
 </template>
@@ -80,10 +99,12 @@ export default {
       shares: 0,
       likeAdded: false,
       likeColor: "light",
-      fullName: false,
+      allName: false,
+      allDisc: false,
       controls: true,
       isFollowing: false,
       nameShortcut: this.getNameShortcut(this.name),
+      discShortcut: this.getDiscShortcut(this.disc),
     };
   },
   methods: {
@@ -92,6 +113,11 @@ export default {
       if (name.length > 10) {
         return name.slice(0, 7) + "...";
       } else return name;
+    },
+    getDiscShortcut(disc) {
+      if (disc.length > 25) {
+        return disc.slice(0, 20) + ` <b style="color: grey">Show more...</b>`;
+      } else return disc;
     },
     addLike() {
       if (this.likeAdded) {
@@ -138,6 +164,14 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 0;
+  }
+}
+.disc {
+  position: relative;
+  bottom: 600px;
+  border-radius: 10px;
+  p {
+    color: #fff;
   }
 }
 #publisher-info {

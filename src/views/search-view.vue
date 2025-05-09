@@ -1,6 +1,5 @@
 <template>
   <b-container class="w-100 main py-4">
-    <!-- Search Bar without Search Button -->
     <b-row class="justify-content-center mb-4">
       <b-col cols="12" md="8">
         <div class="search-box p-3">
@@ -8,6 +7,7 @@
             <b-form-input
               placeholder="Search here..."
               v-model="searchValue"
+              class="bg-transparent text-white"
             ></b-form-input>
           </b-input-group>
         </div>
@@ -27,8 +27,9 @@
               posts = false;
               reels = false;
             "
-            >Users</b-button
           >
+            Users
+          </b-button>
           <b-button
             variant="outline-light"
             @click="
@@ -37,8 +38,9 @@
               reels = false;
               users = false;
             "
-            >Posts</b-button
           >
+            Posts
+          </b-button>
           <b-button
             variant="outline-light"
             @click="
@@ -47,8 +49,9 @@
               users = false;
               posts = false;
             "
-            >Reels</b-button
           >
+            Reels
+          </b-button>
         </b-button-group>
       </b-col>
     </b-row>
@@ -61,31 +64,12 @@
         <div class="mb-5 text-center" v-show="all || users">
           <template v-if="highlightedUsers.length && !highlightedUsers[0].msg">
             <b-list-group>
-              <b-list-group-item
-                class="d-flex align-items-center justify-content-between"
+              <userStructure
                 v-for="(user, index) in highlightedUsers"
                 :key="index"
-                variant="light"
-              >
-                <div class="d-flex justify-content-between align-items-center">
-                  <b-avatar
-                    v-if="user.avatar && typeof user.avatar === 'string'"
-                    :src="user.avatar"
-                    size="40px"
-                    class="mr-2"
-                  ></b-avatar>
-                  <b-avatar
-                    v-else
-                    src="@/assets/logo.png"
-                    size="40px"
-                    class="mr-2"
-                  ></b-avatar>
-                  <h6 class="ml-2" v-html="user.name"></h6>
-                </div>
-                <b-button size="sm" variant="success" class="d-flex mr-0"
-                  ><b-icon icon="plus"></b-icon><b-icon icon="person"></b-icon
-                ></b-button>
-              </b-list-group-item>
+                :name="user.name"
+                :avatar="user.avatar"
+              />
             </b-list-group>
           </template>
           <small v-else v-html="highlightedUsers[0].msg"></small>
@@ -118,6 +102,7 @@
 
 <script>
 import postStructure from "@/components/post-structure.vue";
+import userStructure from "@/components/user-structure.vue";
 import suggestions from "@/json/suggestions.json";
 import allPostsView from "./all-posts-view.vue";
 
@@ -135,6 +120,7 @@ export default {
   },
   components: {
     postStructure,
+    userStructure,
   },
   watch: {
     searchValue(newValue) {
@@ -165,7 +151,6 @@ export default {
   computed: {
     filteredUsers() {
       if (!this.searchValue.trim()) return this.suggestions.users;
-
       return this.suggestions.users.filter((user) =>
         user.name
           .toLowerCase()
@@ -175,7 +160,6 @@ export default {
     },
     highlightedUsers() {
       if (!this.searchValue.trim()) return this.filteredUsers;
-
       const matchedUsers = this.filteredUsers.map((user) => {
         const regex = new RegExp(`(${this.searchValue})`, "gi");
         return {
@@ -193,15 +177,12 @@ export default {
     filteredPosts() {
       const query = this.searchValue.trim().toLowerCase();
       if (!query) return this.suggestions.posts;
-
       return this.suggestions.posts.filter((post) =>
         post.content.toLowerCase().includes(query)
       );
     },
-
     highlightedPosts() {
       if (!this.searchValue.trim()) return this.filteredPosts;
-
       const matchedPosts = this.filteredPosts.map((post) => {
         const regex = new RegExp(`(${this.searchValue})`, "gi");
         return {
@@ -216,18 +197,13 @@ export default {
         ? matchedPosts
         : [{ msg: `No matching posts for "${this.searchValue}" to display!` }];
     },
-
     filteredReels() {
       if (!this.searchValue.trim()) return this.suggestions.reels;
-
-      let matched_reels = this.suggestions.reels.filter((reel) =>
-        reel.disc.toLowerCase.includes(
-          this.searchValue.trim().toLocaleLowerCase()
-        )
+      let matchedReels = this.suggestions.reels.filter((reel) =>
+        reel.disc.toLowerCase().includes(this.searchValue.trim().toLowerCase())
       );
-
-      return matched_reels.length
-        ? matched_reels
+      return matchedReels.length
+        ? matchedReels
         : [
             {
               msg: `<small>There is no matching reels for "${this.searchValue}" to display!</small>`,
@@ -245,19 +221,30 @@ export default {
 .main {
   width: 100%;
   min-height: 85vh;
-  background: #969595; /* You can modify this background as needed */
+  background: #343a40;
   padding: 20px;
   border-radius: 25px;
-}
-small,
-h4 {
   color: #fff;
 }
-/* Styling for the search box with a blurred white background */
+small,
+h4,
+p {
+  color: #fff;
+}
 .search-box {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
   border-radius: 8px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+.search-box .form-control {
+  background-color: transparent;
+  border: 1px solid #555;
+  color: #fff;
+}
+.b-list-group-item {
+  background-color: #454d55 !important;
+  color: #fff;
+  border: none;
 }
 </style>

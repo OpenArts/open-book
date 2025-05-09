@@ -20,7 +20,7 @@
           class="reel"
           v-for="(reel, index) in reels"
           :key="index"
-          @click="showReels()"
+          @click="openReelsView()"
         >
           <video class="w-100 h-100">
             <source :src="asset(reel.url)" type="video/mp4" />
@@ -33,7 +33,6 @@
 
 <script>
 import allPostsView from "@/views/all-posts-view.vue";
-import ReelsView from "@/views/reels-view.vue";
 
 export default {
   name: "reels-history",
@@ -42,6 +41,7 @@ export default {
     return {
       reels: this.profileData.reels,
       isCollapse: true,
+      showReels: false,
     };
   },
   computed: {
@@ -51,19 +51,13 @@ export default {
   },
   methods: {
     asset: (p) => allPostsView.methods.getImgPath(p),
-    showReels() {
-      this.reels.forEach((reel) => {
-        reel.name = this.profileData.name;
-        reel.avatar = this.profileData.avatar;
-      });
-      ReelsView.methods.getReels(this.reels);
-      const link = document.createElement("a");
-      link.href = "/reels";
-      link.click();
+    openReelsView() {
+      this.$emit("toggleReels", true); // إرسال الحدث للأب لتحديث `showReels`
     },
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .reel {
   min-width: 100px;

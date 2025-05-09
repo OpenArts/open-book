@@ -14,29 +14,12 @@
     </b-card-body>
     <b-card-footer>
       <div class="buttons-wrapper">
-        <!-- زر Like ظاهر دائماً -->
+        <!-- "Like" button always visible -->
         <b-button variant="dark" class="like-btn">
           <b-icon icon="heart" font-scale="1.5" variant="danger"></b-icon>
         </b-button>
-        <!-- باقي الأزرار تظهر عند تحويم المؤشر على المنطقة -->
+        <!-- Extra buttons that appear on hover -->
         <div class="extra-btns">
-          <b-button variant="dark">
-            <b-icon
-              icon="emoji-angry"
-              font-scale="1.5"
-              class="angry lined"
-            ></b-icon>
-          </b-button>
-          <b-button variant="dark">
-            <b-icon icon="emoji-frown" font-scale="1.5" class="sad"></b-icon>
-          </b-button>
-          <b-button variant="dark">
-            <b-icon
-              icon="emoji-laughing"
-              font-scale="1.5"
-              variant="warning"
-            ></b-icon>
-          </b-button>
           <b-button variant="dark">
             <b-icon
               icon="hand-thumbs-up"
@@ -69,14 +52,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/scss/backgrounds.scss";
 
-/* تطبيق مظهر داكن دائم على الكارت */
+/* Dark theme for the component */
 .dark-theme {
-  background-color: #343a40 !important;
+  background-color: #313438 !important;
   color: #fff;
 }
+
+/* Set dark backgrounds for card header, body, and footer */
 .dark-theme .b-card-header,
 .dark-theme .b-card-body,
 .dark-theme .b-card-footer {
@@ -84,19 +69,25 @@ export default {
   border-color: #343a40;
 }
 
-/* تنظيم منطقة الأزرار */
+/* Styling for button wrapper */
 .buttons-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* زر Like ظاهر دومًا */
-.like-btn {
-  /* يمكن تعديل حجم أو مظهر الزر هنا إن رغبت */
+/* Use deep selector to override button backgrounds inside the component */
+::v-deep .buttons-wrapper .btn {
+  background: #343a40 !important;
+  border-color: #343a40 !important;
 }
 
-/* إخفاء باقي الأزرار افتراضيًا مع تأثير انتقال بطيء */
+/* Spacing for the like button */
+.like-btn {
+  margin-right: 10px;
+}
+
+/* Hide extra buttons by default with smooth transition */
 .extra-btns {
   display: flex;
   align-items: center;
@@ -105,22 +96,8 @@ export default {
   margin-left: 10px;
 }
 
-/* عند تحويم المؤشر على منطقة الأزرار، تظهر باقي الأزرار ببطء */
+/* Show extra buttons when hovering over the buttons wrapper */
 .buttons-wrapper:hover .extra-btns {
   opacity: 1;
-}
-
-/* بعض التنسيقات للأيقونات الخاصة */
-.angry {
-  color: $angry;
-}
-.angry:hover {
-  color: #d10101;
-}
-.sad {
-  color: $sad;
-}
-.sad:hover {
-  color: #000;
 }
 </style>

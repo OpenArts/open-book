@@ -1,7 +1,7 @@
 <template>
   <b-navbar type="light" class="blur mbar" fixed="top">
     <b-navbar-brand to="/" tag="router-link">
-      <b>Black Book</b>
+      <b>Open Book</b>
     </b-navbar-brand>
     <b-navbar-nav class="bg-success"></b-navbar-nav>
   </b-navbar>

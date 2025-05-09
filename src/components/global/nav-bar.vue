@@ -1,7 +1,7 @@
 <template>
   <b-navbar toggleable="sm" type="light" class="blur" fixed="top">
     <b-navbar-brand to="/" tag="router-link">
-      <b>Black Book</b>
+      <b>Open Book</b>
     </b-navbar-brand>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
