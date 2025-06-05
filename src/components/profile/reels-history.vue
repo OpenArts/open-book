@@ -1,29 +1,29 @@
 <template>
   <b-col>
     <h4>
-      Reels History ({{ reels.length }})
+      {{ Title }} ({{ reels.length }})
       <b-button
         class="p-0 bg-transparent no-border"
-        variant="light"
-        v-b-toggle.collapseReels
+        variant="dark"
+        v-b-toggle="collapseId"
         ><b-icon :icon="arrowState" font-scale="1.5"></b-icon
       ></b-button>
     </h4>
     <b-collapse
-      id="collapseReels"
+      :id="collapseId"
       :visible="true"
       @shown="isCollapse = false"
       @hidden="isCollapse = true"
     >
-      <b-row class="d-flex">
+      <b-row class="ml-auto">
         <b-col
           class="reel"
           v-for="(reel, index) in reels"
           :key="index"
-          @click="openReelsView()"
+          @click="openReelsNavigator()"
         >
           <video class="w-100 h-100">
-            <source :src="asset(reel.url)" type="video/mp4" />
+            <source :src="$store.getters.asset(reel.url)" type="video/mp4" />
           </video>
         </b-col>
       </b-row>
@@ -32,14 +32,11 @@
 </template>
 
 <script>
-import allPostsView from "@/views/all-posts-view.vue";
-
 export default {
   name: "reels-history",
-  props: ["profileData"],
+  props: ["reels", "Title", "collapseId"],
   data() {
     return {
-      reels: this.profileData.reels,
       isCollapse: true,
       showReels: false,
     };
@@ -50,9 +47,8 @@ export default {
     },
   },
   methods: {
-    asset: (p) => allPostsView.methods.getImgPath(p),
-    openReelsView() {
-      this.$emit("toggleReels", true); // إرسال الحدث للأب لتحديث `showReels`
+    openReelsNavigator() {
+      this.$emit("toggleReels", true); // send event to parent component to update show reels
     },
   },
 };
@@ -63,9 +59,8 @@ export default {
   min-width: 100px;
   max-width: 120px;
   min-height: 120px;
-  backdrop-filter: blur(15px);
-  background: #ffffff62;
-  border: 1px #fff solid;
+  background: #707070;
+  border: 4px #000 dashed;
   cursor: pointer;
 }
 </style>

@@ -1,92 +1,231 @@
 {
-  "id": 1,
-  "name": "Profile Name",
+  "id": "u1",
+  "role": "user",
+  "name": "Profile name",
   "avatar": "assets/logo.png",
   "friends": [
-    { "name": "Friend Name", "avatar": "assets/logo.png" },
+    { "name": "Friend name", "avatar": "assets/logo.png" },
     {
-      "name": "Friend Name",
+      "name": "Friend name",
       "avatar": "assets/logo.png"
     }
   ],
   "friendlyRequests": [
-    { "name": "Friendly Requester Name", "avatar": "assets/logo.png" },
-    { "name": "Friendly Requester Name", "avatar": "assets/logo.png" }
+    { "name": "Friendly requester name", "avatar": "assets/logo.png" },
+    { "name": "Friendly requester name", "avatar": "assets/logo.png" }
   ],
   "posts": [
     {
+      "PID": "8x18",
+      "name": "Profile name",
+      "avatar": "assets/logo.png",
       "date": "2024/8/27",
-      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet sunt aut ipsum, quia inventore ut rem accusantium possimus a praesentium dicta autem neque. Animi perspiciatis, modi quibusdam suscipit ipsa tenetur minus tempore, voluptatem accusantium possimus ullam aliquam. Ab a, accusantium provident voluptates sed ducimus amet nisi delectus inventore, eligendi eaque."
+      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet sunt aut ipsum, quia inventore ut rem accusantium possimus a praesentium dicta autem neque. Animi perspiciatis, modi quibusdam suscipit ipsa tenetur minus tempore, voluptatem accusantium possimus ullam aliquam. Ab a, accusantium provident voluptates sed ducimus amet nisi delectus inventore, eligendi eaque.",
+      "likeAdded": false,
+      "likeState": "hand-thumbs-up",
+      "likes": 0,
+      "heartAdded": false,
+      "heartState": "heart",
+      "hearts": 0,
+      "saved": true,
+      "saveState": "trash",
+      "comments": 0,
+      "editAble": true
     },
     {
+      "PID": "ci9f",
+      "name": "Profile name",
+      "avatar": "assets/logo.png",
       "date": "2024/8/27",
-      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet sunt auuia inventor"
+      "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet sunt auuia inventor",
+      "likeAdded": false,
+      "likeState": "hand-thumbs-up",
+      "likes": 0,
+      "heartAdded": false,
+      "heartState": "heart",
+      "hearts": 0,
+      "saved": true,
+      "saveState": "trash",
+      "comments": 0,
+      "editAble": true
     }
   ],
   "reels": [
     {
+      "RID": "mpv9",
+      "name": "Profile name",
+      "avatar": "assets/logo.png",
       "date": "2025/8/27",
       "url": "assets/reel.mp4",
-      "disc": "An enormus super nova"
+      "disc": "An enormus super nova",
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "likeAdded": false,
+      "likeIcon": "hand-thumbs-up",
+      "isFollowing": false,
+      "saved": true,
+      "saveState": "trash",
+      "editAble": true
     },
     {
+      "RID": "rt45",
+      "name": "Profile name",
+      "avatar": "assets/logo.png",
       "date": "2008/8/27",
       "url": "assets/reel.mp4",
-      "disc": "An enormus super nova"
+      "disc": "An enormus super nova",
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "likeAdded": false,
+      "likeIcon": "hand-thumbs-up",
+      "isFollowing": false,
+      "saved": true,
+      "saveState": "trash",
+      "editAble": true
     },
     {
+      "RID": "xb89",
+      "name": "Profile name",
+      "avatar": "assets/logo.png",
       "date": "2008/3/9",
       "url": "assets/reel.mp4",
-      "disc": "An enormus super nova"
+      "disc": "An enormus super nova",
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "likeAdded": false,
+      "likeIcon": "hand-thumbs-up",
+      "isFollowing": false,
+      "saved": true,
+      "saveState": "trash",
+      "editAble": true
     },
     {
+      "RID": "altf4",
+      "name": "Profile name",
+      "avatar": "assets/logo.png",
       "date": "2007/7/27",
       "url": "assets/reel.mp4",
-      "disc": "An enormus super nova"
-    },
-    {
-      "date": "2008/8/28",
-      "url": "assets/reel.mp4",
-      "disc": "An enormus super nova"
-    },
-    {
-      "date": "2025/8/27",
-      "url": "assets/reel.mp4",
-      "disc": "An enormus super nova"
-    },
-    {
-      "date": "2008/8/27",
-      "url": "assets/reel.mp4",
-      "disc": "An enormus super nova"
-    },
-    {
-      "date": "2008/3/9",
-      "url": "assets/reel.mp4",
-      "disc": "An enormus super nova"
-    },
-    {
-      "date": "2007/7/27",
-      "url": "assets/reel.mp4"
-    },
-    {
-      "date": "2008/8/27",
-      "url": "assets/reel.mp4"
-    },
-    {
-      "date": "2008/3/9",
-      "url": "assets/reel.mp4"
-    },
-    {
-      "date": "2007/7/27",
-      "url": "assets/reel.mp4"
-    },
-    {
-      "date": "2008/8/28",
-      "url": "assets/reel.mp4"
-    },
-    {
-      "date": "2008/3/9",
-      "url": "assets/reel.mp4"
+      "disc": "An enormus super nova",
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "likeAdded": false,
+      "likeIcon": "hand-thumbs-up",
+      "isFollowing": false,
+      "saved": true,
+      "saveState": "trash",
+      "editAble": true
     }
-  ]
+  ],
+  "saved": {
+    "posts": [
+      {
+        "PID": "yoi9",
+        "name": "Other publisher",
+        "avatar": "assets/logo.png",
+        "date": "2024/8/27",
+        "content": "...Saved Post... Lorem ipsum eaque.",
+        "likeAdded": false,
+        "likeState": "hand-thumbs-up",
+        "likes": 0,
+        "heartAdded": false,
+        "heartState": "heart",
+        "hearts": 0,
+        "saved": true,
+        "saveState": "trash",
+        "comments": 0,
+        "editAble": false
+      },
+      {
+        "PID": "bk466",
+        "name": "Other publisher",
+        "avatar": "assets/logo.png",
+        "date": "2024/8/27",
+        "content": "...Saved Post... Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet sunt auuia inventor",
+        "likeAdded": false,
+        "likeState": "hand-thumbs-up",
+        "likes": 0,
+        "heartAdded": false,
+        "heartState": "heart",
+        "hearts": 0,
+        "saved": true,
+        "saveState": "trash",
+        "comments": 0,
+        "editAble": false
+      }
+    ],
+    "reels": [
+      {
+        "RID": "l1l",
+        "name": "Other publisher",
+        "avatar": "assets/logo.png",
+        "date": "2025/8/27",
+        "url": "assets/reel.mp4",
+        "disc": "...Saved Reel...",
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "likeAdded": false,
+        "likeIcon": "hand-thumbs-up",
+        "isFollowing": false,
+        "saved": true,
+        "saveState": "trash",
+        "editAble": false
+      },
+      {
+        "RID": "IlI1",
+        "name": "Other publisher",
+        "avatar": "assets/logo.png",
+        "date": "2008/8/27",
+        "url": "assets/reel.mp4",
+        "disc": "...Saved Reel...",
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "likeAdded": false,
+        "likeIcon": "hand-thumbs-up",
+        "isFollowing": false,
+        "saved": true,
+        "saveState": "trash",
+        "editAble": false
+      },
+      {
+        "RID": "polk91",
+        "name": "Other publisher",
+        "avatar": "assets/logo.png",
+        "date": "2008/3/9",
+        "url": "assets/reel.mp4",
+        "disc": "...Saved Reel...",
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "likeAdded": false,
+        "likeIcon": "hand-thumbs-up",
+        "isFollowing": false,
+        "saved": true,
+        "saveState": "trash",
+        "editAble": false
+      },
+      {
+        "RID": "klop19",
+        "name": "Other publisher",
+        "avatar": "assets/logo.png",
+        "date": "2007/7/27",
+        "url": "assets/reel.mp4",
+        "disc": "...Saved Reel...",
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "likeAdded": false,
+        "likeIcon": "hand-thumbs-up",
+        "isFollowing": false,
+        "saved": true,
+        "saveState": "trash",
+        "editAble": false
+      }
+    ]
+  }
 }

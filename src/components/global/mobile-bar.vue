@@ -1,5 +1,5 @@
 <template>
-  <b-navbar type="light" class="blur mbar" fixed="top">
+  <b-navbar type="dark" class="blur mbar" fixed="top">
     <b-navbar-brand to="/" tag="router-link">
       <b>Open Book</b>
     </b-navbar-brand>

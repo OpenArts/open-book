@@ -33,6 +33,7 @@ export default {
 #app {
   background: $Main;
   min-height: 100vh;
+  overflow: hidden;
   #rtv {
     padding-top: 80px;
     min-width: 100vw;

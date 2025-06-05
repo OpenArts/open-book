@@ -1,24 +1,86 @@
 <template>
   <b-container>
-    <NameAvatar v-show="!showReels" />
-    <b-row v-show="!showReels">
+    <NameAvatar v-show="!showReelsHistory && !showSavedReels" />
+    <b-row v-show="!showReelsHistory && !showSavedReels">
       <FriendsRequests :profile-data="profile" />
       <FriendsList :profile-data="profile" />
     </b-row>
-    <b-row v-show="!showReels">
-      <ReelsHistory :profile-data="profile" @toggleReels="showReels = true" />
+    <!-- Shared -->
+    <b-row v-show="!showReelsHistory && !showSavedReels" class="p-0">
+      <ReelsHistory
+        :reels="profile.reels"
+        @toggleReels="
+          showReelsHistory = true;
+          showSavedReels = false;
+        "
+        Title="Reels history"
+        collapse-id="reelsHistoryCollapse"
+      />
     </b-row>
-    <b-row class="mt-3" v-show="!showReels">
-      <PostsHistory :profile-data="profile" />
+    <b-row
+      class="mt-3"
+      v-show="!showReelsHistory && !showSavedReels"
+      variant="dark"
+    >
+      <PostsHistory
+        :posts="$store.state.profile.posts"
+        posts-obj="profile"
+        posts-list="posts"
+        Title="Posts history"
+        collapse-id="postsHistoryCollapse"
+      />
     </b-row>
-    <div v-show="showReels">
+    <!-- Saved -->
+    <b-row v-show="!showReelsHistory && !showSavedReels" class="p-0">
+      <ReelsHistory
+        :reels="saved.reels"
+        @toggleReels="
+          showSavedReels = true;
+          showReelsHistory = false;
+        "
+        Title="Saved reels"
+        collapseId="savedReelsCollapse"
+      />
+    </b-row>
+    <b-row
+      class="mt-3"
+      v-show="!showReelsHistory && !showSavedReels"
+      variant="dark"
+    >
+      <PostsHistory
+        :posts="saved.posts"
+        posts-obj="profile"
+        posts-list="saved"
+        Title="Saved posts"
+        collapseId="savedPostsCollapse"
+      />
+    </b-row>
+    <!-- Reels display -->
+    <div>
       <b-button
-        variant="light"
-        class="bg-transparent"
-        @click="showReels = false"
+        v-show="showReelsHistory || showSavedReels"
+        variant="dark"
+        class="bg-transparent fixedelm fixed-top"
+        @click="
+          showReelsHistory = false;
+          showSavedReels = false;
+        "
         ><b-icon icon="arrow-left"></b-icon
       ></b-button>
-      <ReelsView :externalReels="modifyProfileReels()" />
+      <!-- reels history display -->
+      <ReelsNavigator
+        :reels="profile.reels"
+        reelsObj="profile"
+        reelsList="reels"
+        v-show="showReelsHistory"
+      />
+      <!-- saved reels display -->
+      <ReelsNavigator
+        :reels="saved.reels"
+        reelsObj="profile"
+        reelsList="saved"
+        v-show="showSavedReels"
+      />
     </div>
   </b-container>
 </template>
@@ -29,29 +91,22 @@ import FriendsRequests from "@/components/profile/friends-requests.vue";
 import FriendsList from "@/components/profile/friends-list.vue";
 import ReelsHistory from "../components/profile/reels-history.vue";
 import PostsHistory from "@/components/profile/posts-history.vue";
-import ReelsView from "@/views/reels-view.vue";
-import jsonProfile from "../json/profile.json";
+import ReelsNavigator from "@/components/global/reels-navigator.vue";
 
 export default {
   name: "profile-view",
   data() {
     return {
-      profile: jsonProfile,
-      showReels: false,
+      showReelsHistory: false,
+      showSavedReels: false,
     };
   },
-  methods: {
-    ShowReels() {
-      return this.showReels;
+  computed: {
+    profile() {
+      return this.$store.state.profile;
     },
-    modifyProfileReels() {
-      return this.profile.reels.map((reel) => {
-        return {
-          ...reel,
-          name: this.profile.name,
-          avatar: this.profile.avatar,
-        };
-      });
+    saved() {
+      return this.$store.state.profile.saved;
     },
   },
   components: {
@@ -59,8 +114,20 @@ export default {
     FriendsRequests,
     FriendsList,
     ReelsHistory,
-    ReelsView,
+    ReelsNavigator,
     PostsHistory,
   },
 };
 </script>
+
+<style>
+h4 {
+  color: #fff;
+}
+.fixedelm {
+  margin-top: 100px;
+  margin-left: 100px;
+  width: fit-content;
+  cursor: pointer;
+}
+</style>

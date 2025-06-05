@@ -2,7 +2,7 @@
   <b-row class="mb-2">
     <b-col cols="12" class="text-center">
       <b-avatar :src="avatar(pAvatar)" size="150px" class="mb-2"></b-avatar>
-      <h3>{{ pName }}</h3>
+      <h3 style="color: #fff">{{ pName }}</h3>
     </b-col>
   </b-row>
 </template>

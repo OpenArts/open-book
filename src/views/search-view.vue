@@ -1,12 +1,12 @@
 <template>
-  <b-container class="w-100 main py-4">
+  <b-container class="main py-4">
     <b-row class="justify-content-center mb-4">
       <b-col cols="12" md="8">
         <div class="search-box p-3">
           <b-input-group>
             <b-form-input
               placeholder="Search here..."
-              v-model="searchValue"
+              v-model="searchQuery"
               class="bg-transparent text-white"
             ></b-form-input>
           </b-input-group>
@@ -56,9 +56,8 @@
       </b-col>
     </b-row>
 
-    <!-- Static Sections without Default Data -->
     <b-row class="d-flex justify-content-center mb-4">
-      <b-col cols="12" md="8">
+      <b-col cols="12" md="12">
         <!-- Users Section -->
         <h4 class="mb-3" v-show="all || users">Users</h4>
         <div class="mb-5 text-center" v-show="all || users">
@@ -68,7 +67,9 @@
                 v-for="(user, index) in highlightedUsers"
                 :key="index"
                 :name="user.name"
-                :avatar="user.avatar"
+                :avatar="$store.getters.asset(user.avatar)"
+                obj="suggestions"
+                list="users"
               />
             </b-list-group>
           </template>
@@ -81,9 +82,10 @@
           <template v-if="highlightedPosts.length && !highlightedPosts[0].msg">
             <postStructure
               v-for="(post, index) in highlightedPosts"
-              :pfl-name="post.name"
-              :pst-content="post.content"
-              :pst-date="post.date"
+              :PIDP="post.PID"
+              :new-post-data="{ content: post.content }"
+              obj="suggestions"
+              list="posts"
               :key="index"
             />
           </template>
@@ -93,7 +95,24 @@
         <!-- Reels Section -->
         <h4 class="mb-3" v-show="all || reels">Reels</h4>
         <div class="text-center" v-show="all || reels">
-          <small>No reels to display.</small>
+          <template v-if="highlightedReels.length && !highlightedReels[0].msg">
+            <div class="d-flex justify-content-between reels-container">
+              <div
+                v-for="(reel, index) in highlightedReels"
+                :key="index"
+                class="reel-container"
+              >
+                <reelStructure
+                  :RID="reel.RID"
+                  :newReelData="{ disc: reel.disc }"
+                  :discCollapse="`collapse-${index}`"
+                  obj="suggestions"
+                  list="reels"
+                />
+              </div>
+            </div>
+          </template>
+          <small v-else v-html="highlightedReels[0].msg"></small>
         </div>
       </b-col>
     </b-row>
@@ -101,17 +120,16 @@
 </template>
 
 <script>
-import postStructure from "@/components/post-structure.vue";
-import userStructure from "@/components/user-structure.vue";
-import suggestions from "@/json/suggestions.json";
-import allPostsView from "./all-posts-view.vue";
+import postStructure from "@/components/structures/post-structure.vue";
+import reelStructure from "@/components/structures/reel-structure.vue";
+import userStructure from "@/components/structures/user-structure.vue";
 
 export default {
   name: "SearchView",
   data() {
     return {
-      suggestions: suggestions,
-      searchValue: "",
+      suggestions: this.$store.state.suggestions,
+      searchQuery: "",
       all: true,
       users: false,
       posts: false,
@@ -121,34 +139,12 @@ export default {
   components: {
     postStructure,
     userStructure,
-  },
-  watch: {
-    searchValue(newValue) {
-      if (!newValue.trim()) {
-        this.highlightedPosts = this.filteredPosts;
-        this.highlightedUsers = this.filteredUsers;
-      } else {
-        const regex = new RegExp(`(${newValue})`, "gi");
-
-        this.highlightedPosts = this.filteredPosts.map((post) => ({
-          ...post,
-          content: post.content.replace(
-            regex,
-            `<span style="background:green;color:#fff;">$1</span>`
-          ),
-        }));
-
-        this.highlightedUsers = this.filteredUsers.map((user) => ({
-          ...user,
-          name: user.name.replace(
-            regex,
-            `<span style="background:green;color:#fff;">$1</span>`
-          ),
-        }));
-      }
-    },
+    reelStructure,
   },
   computed: {
+    searchValue() {
+      return this.searchQuery;
+    },
     filteredUsers() {
       if (!this.searchValue.trim()) return this.suggestions.users;
       return this.suggestions.users.filter((user) =>
@@ -172,19 +168,23 @@ export default {
       });
       return matchedUsers.length
         ? matchedUsers
-        : [{ msg: `No matching users for "${this.searchValue}" to display!` }];
+        : [
+            {
+              msg: `No matching users for "${this.searchValue}" to display!`,
+            },
+          ];
     },
     filteredPosts() {
       const query = this.searchValue.trim().toLowerCase();
       if (!query) return this.suggestions.posts;
       return this.suggestions.posts.filter((post) =>
-        post.content.toLowerCase().includes(query)
+        post.content.trim().toLowerCase().includes(query)
       );
     },
     highlightedPosts() {
       if (!this.searchValue.trim()) return this.filteredPosts;
       const matchedPosts = this.filteredPosts.map((post) => {
-        const regex = new RegExp(`(${this.searchValue})`, "gi");
+        const regex = new RegExp(`(${this.searchValue})`, "gim");
         return {
           ...post,
           content: post.content.replace(
@@ -198,20 +198,30 @@ export default {
         : [{ msg: `No matching posts for "${this.searchValue}" to display!` }];
     },
     filteredReels() {
-      if (!this.searchValue.trim()) return this.suggestions.reels;
-      let matchedReels = this.suggestions.reels.filter((reel) =>
-        reel.disc.toLowerCase().includes(this.searchValue.trim().toLowerCase())
+      const query = this.searchValue.trim().toLowerCase();
+      if (!query) return this.suggestions.reels;
+      return this.suggestions.reels.filter((reel) =>
+        reel.disc.toLowerCase().trim().includes(query)
       );
+    },
+    highlightedReels() {
+      console.log(this.searchValue);
+      if (this.searchValue === "") return this.filteredReels;
+      const matchedReels = this.filteredReels.map((reel) => {
+        console.log(reel);
+        console.log(this.filteredReels);
+        const regex = new RegExp(`(${this.searchValue})`, "gi");
+        return {
+          ...reel,
+          disc: reel.disc.replace(
+            regex,
+            `<span style="background:green;color:#fff;">$1</span>`
+          ),
+        };
+      });
       return matchedReels.length
         ? matchedReels
-        : [
-            {
-              msg: `<small>There is no matching reels for "${this.searchValue}" to display!</small>`,
-            },
-          ];
-    },
-    asset(path) {
-      return allPostsView.methods.getImgPath(path);
+        : [{ msg: `No matching reels for "${this.searchValue}" to display!` }];
     },
   },
 };
@@ -246,5 +256,12 @@ p {
   background-color: #454d55 !important;
   color: #fff;
   border: none;
+}
+.reels-container {
+  overflow-x: scroll;
+  .reel-container {
+    min-width: 350px;
+    margin: 10px;
+  }
 }
 </style>

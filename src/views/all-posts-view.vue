@@ -1,29 +1,18 @@
 <template>
   <b-container class="w-100 ml-0">
-    <div v-for="(post, index) in posts" :key="index">
-      <post-structure
-        :pfl-name="post.name"
-        :avatar="getImgPath(post.avatar)"
-        :pst-date="post.date"
-        :pst-content="post.content"
-      />
+    <div v-for="(post, index) in $store.state.suggestions.posts" :key="index">
+      <post-structure :PIDP="post.PID" obj="suggestions" list="posts" />
     </div>
   </b-container>
 </template>
 
 <script>
-import postStructure from "@/components/post-structure.vue";
-import suggestions from "@/json/suggestions.json";
+import postStructure from "@/components/structures/post-structure.vue";
 
 export default {
   name: "all-posts-view",
   components: {
     postStructure,
-  },
-  data() {
-    return {
-      posts: suggestions.posts,
-    };
   },
   methods: {
     getImgPath(img) {

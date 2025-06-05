@@ -5,7 +5,7 @@
       >)
       <b-button
         class="p-0 bg-transparent no-border"
-        variant="light"
+        variant="dark"
         v-b-toggle.collapseFriendsRequests
         ><b-icon :icon="arrowState" font-scale="1.5"></b-icon
       ></b-button>
@@ -21,6 +21,7 @@
           class="d-flex align-items-center"
           v-for="(requester, index) in profile.friendlyRequests"
           :key="index"
+          variant="dark"
         >
           <b-avatar
             :src="avatar(requester.avatar)"

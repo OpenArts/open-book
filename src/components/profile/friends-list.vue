@@ -7,7 +7,7 @@
       <b-button
         v-b-toggle.collapseFriends
         class="p-0 bg-transparent no-border"
-        variant="light"
+        variant="dark"
       >
         <!-- يتم احتساب السهم بناءً على حالة الـ collapse -->
         <b-icon :icon="collapseArrow" font-scale="1.5"></b-icon>
@@ -25,6 +25,7 @@
           class="d-flex align-items-center"
           v-for="(friend, index) in profile.friends"
           :key="index"
+          variant="dark"
         >
           <b-avatar
             :src="avatar(friend.avatar)"

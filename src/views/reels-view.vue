@@ -1,32 +1,28 @@
 <template>
-  <b-container>
-    <b-row>
-      <reelStructure
-        v-for="(reel, index) in reels || suggestions.reels"
-        :key="index"
-        :url="reel.url"
-        :name="reel.name"
-        :avatar="reel.avatar"
-        :date="reel.date"
-        :disc="reel.disc"
-      />
-    </b-row>
-  </b-container>
+  <div class="handle-lg">
+    <reelsNavigator
+      :reels="$store.state.suggestions.reels"
+      reelsObj="suggestions"
+      reelsList="reels"
+    />
+  </div>
 </template>
 <script>
-import reelStructure from "@/components/reel-structure.vue";
-import suggestions from "@/json/suggestions.json";
+import reelsNavigator from "@/components/global/reels-navigator.vue";
 
 export default {
   name: "reels-view",
-  props: ["externalReels"],
   components: {
-    reelStructure,
-  },
-  data() {
-    return {
-      reels: this.externalReels ? this.externalReels : suggestions.reels,
-    };
+    reelsNavigator,
   },
 };
 </script>
+
+<style scoped>
+@media screen and (min-width: 925px) {
+  .handle-lg {
+    max-width: 30%;
+    margin: auto;
+  }
+}
+</style>

@@ -4,6 +4,7 @@ import allPostsView from "@/views/all-posts-view.vue";
 import ReelsView from "@/views/reels-view.vue";
 import ProfileView from "@/views/profile-view.vue";
 import SearchView from "@/views/search-view.vue";
+import UploadView from "@/views/upload-view.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     name: "SearchView",
     path: "/search",
     component: SearchView,
+  },
+  {
+    name: "upload-view",
+    path: "/upload",
+    component: UploadView,
   },
 ];
 
